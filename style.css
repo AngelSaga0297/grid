@@ -1,0 +1,147 @@
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    div{
+        text-align: center;
+        /* align-content: center; */
+    }
+}
+    
+.div1 {
+    grid-column: span 5 / span 5;
+    grid-row: span 2 / span 2;
+    background-color: rgb(150, 41, 41);
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    border: 2px solid #000;
+    padding: 0.5vw;
+    display: flex;
+    justify-content: center;
+}
+
+.div2 {
+    grid-column: span 1 / span 1;
+    grid-row: span 5 / span 46;
+    grid-row-start: 3;
+    background-color: #962929;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    border: 2px solid #000;
+    box-shadow: 10px 10px 4px 1px #868686;
+    padding: 0.5vw;
+}
+
+.div3 {
+    grid-column: span 4 / span 4;
+    grid-row: span 5 / span 46;
+    grid-row-start: 3;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    border: 2px solid #000;
+    box-shadow: inset 0px 15px 100px 1px #868686;
+    padding: 0.5vw;
+}
+
+.div4 {
+    grid-column: span 5 / span 5;
+    grid-row: span 22 / span 22;
+    grid-row-start: 50;
+    border: 2px solid #000;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    background-color: #962929;
+    box-shadow: 10px 10px 4px 1px #868686;
+    padding: 0.5vw;
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0.5vw;
+}
+
+.option {
+    border-radius: 20px;
+    border: 2px solid white;
+    font-size: 1.5vw;
+    padding: 0.5vw;
+
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    overflow: hidden; /* Oculta el pseudo-elemento que se desborda */
+    background-color: transparent; /* Fondo transparente por defecto */
+    z-index: 1; /* Asegura que el texto esté sobre el pseudo-elemento */
+    transition: color 0.3s ease; /* Transición suave para el color del texto */
+
+}
+
+.option:hover{
+    cursor: pointer;
+    color: #000;
+}
+
+.option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%; /* Inicio de alto en 0 */
+    background: #bbbbbb; /* Color del hover */
+    z-index: -1; /* Detrás del texto */
+    transition: height 0.2s ease; /* Transición suave del alto */
+}
+
+.option:hover::before {
+    height: 100%;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+input {
+    color: #fff;
+    padding: 0.5em 1em;
+    border: 2px solid #0c0c0c;
+    border-radius: 12px;
+    background-color: transparent;
+    font-size: 1vw;
+    align-items: center;
+}
+
+input:focus {
+    outline: 0;
+    border-color: #fff;
+}
+
+input:before {
+    content: 'Search';
+    position: static;
+    left: 0;
+    width: 100%;
+    left: 0;
+    height: 0%;
+    background: #bbbbbb; /* Color del hover */
+    z-index: -1; /* Detrás del texto */
+}
+
+.search svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease /* Transición suave para la animación */
+}
+
+.search svg:hover {
+    cursor: pointer;
+    transform: scale(1.2); /* Escala el ícono al 130% */
+}
+
+.search svg.clicked {
+    transform: scale(1.3); /* Escala el ícono al 130% */
+    color: #fff;
+}

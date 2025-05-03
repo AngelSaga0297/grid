@@ -1,10 +1,12 @@
-
 .parent {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    gap: 8px;
+    grid-template-columns: 1fr 4fr; /* Sidebar 1 parte, contenido 4 partes */
+    grid-template-rows: auto 1fr auto; /* Header auto, contenido flexible, footer auto */
+    min-height: 100dvh;
+    gap: 2px;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #2f2f30f8; /* Fondo claro */
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
 
     div{
         text-align: center;
@@ -13,72 +15,72 @@
 }
     
 .div1 {
-    grid-column: span 5 / span 5;
-    grid-row: span 2 / span 2;
-    background-color: rgb(150, 41, 41);
-    font-size: clamp(1rem, 2.5vw, 2rem);
-    border: 2px solid #000;
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    height: max-content;
+    background-color: black; /* negro puro */
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    /* border: 1px solid #e0e0e0; */ /* Borde sutil */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra suave */
     padding: 0.5vw;
     display: flex;
     justify-content: center;
 }
 
 .div2 {
-    grid-column: span 1 / span 1;
-    grid-row: span 5 / span 46;
-    grid-row-start: 3;
-    background-color: #962929;
-    font-size: clamp(1rem, 2.5vw, 2rem);
-    border: 2px solid #000;
-    box-shadow: 10px 10px 4px 1px #868686;
-    padding: 0.5vw;
+    grid-column: 1; /* Primera columna */
+    grid-row: 2; /* Segunda fila */
+    background-color: #2f2f30f8;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    /* border: 1px solid #e0e0e0; */
+    padding: 0.5vw; 
+    width: max-content;
+    min-width: 12dvw;
 }
 
 .div3 {
-    grid-column: span 4 / span 4;
-    grid-row: span 5 / span 46;
-    grid-row-start: 3;
-    font-size: clamp(1rem, 2.5vw, 2rem);
-    border: 2px solid #000;
-    box-shadow: inset 0px 15px 100px 1px #868686;
+    grid-column: 2; /* Segunda columna */
+    grid-row: 2; /* Segunda fila */
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    /* border: 1px solid #e0e0e0; */
     padding: 0.5vw;
 }
 
 .div4 {
-    grid-column: span 5 / span 5;
-    grid-row: span 22 / span 22;
-    grid-row-start: 50;
-    border: 2px solid #000;
-    font-size: clamp(1rem, 2.5vw, 2rem);
-    background-color: #962929;
-    box-shadow: 10px 10px 4px 1px #868686;
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    grid-row: 3; /* Tercera fila */
+    /* border: 1px solid #e0e0e0; */
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    background-color: black;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
     padding: 0.5vw;
 }
 
 .options-list {
+    color: #dbdbdb;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     padding: 0.5vw;
 }
 
 .option {
-    border-radius: 20px;
-    border: 2px solid white;
-    font-size: 1.5vw;
+    border-radius: 8px;
+    border: 1px solid #e0e0e050;
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
     padding: 0.5vw;
-
     position: relative; /* Necesario para posicionar el pseudo-elemento */
     overflow: hidden; /* Oculta el pseudo-elemento que se desborda */
     background-color: transparent; /* Fondo transparente por defecto */
     z-index: 1; /* Asegura que el texto esté sobre el pseudo-elemento */
-    transition: color 0.3s ease; /* Transición suave para el color del texto */
-
+    transition: all 0.3s ease;
+    text-align: left !important;
+    padding-left: 15px;
 }
 
 .option:hover{
     cursor: pointer;
-    color: #000;
+    /* background-color: #f1f3f5; */
+    transform: translateX(1px);
 }
 
 .option::before {
@@ -88,9 +90,9 @@
     left: 0;
     width: 100%;
     height: 0%; /* Inicio de alto en 0 */
-    background: #bbbbbb; /* Color del hover */
+    background: #343435; /* Color más suave para el hover */
     z-index: -1; /* Detrás del texto */
-    transition: height 0.2s ease; /* Transición suave del alto */
+    transition: height 0.1s ease; /* Transición suave del alto */
 }
 
 .option:hover::before {
@@ -105,18 +107,19 @@
 }
 
 input {
-    color: #fff;
+    color: #ffffff;
     padding: 0.5em 1em;
-    border: 2px solid #0c0c0c;
+    border: 2px solid #6b6b6b;
     border-radius: 12px;
     background-color: transparent;
-    font-size: 1vw;
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
     align-items: center;
+    transition: border-color 0.3s ease;
 }
 
 input:focus {
     outline: 0;
-    border-color: #fff;
+    border-color: #fffffff8;
 }
 
 input:before {
@@ -133,6 +136,7 @@ input:before {
 .search svg {
     width: 24px;
     height: 24px;
+    color: #6b6b6b;
     transition: transform 0.3s ease /* Transición suave para la animación */
 }
 
@@ -144,4 +148,232 @@ input:before {
 .search svg.clicked {
     transform: scale(1.3); /* Escala el ícono al 130% */
     color: #fff;
+}
+
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.song-info {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.song-title {
+    font-weight: bold;
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+}
+
+.artist {
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
+    opacity: 0.8;
+}
+
+.player-controls {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.progress-container {
+    width: 80%;
+    height: 4px;
+    background: #555;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 30%;
+    height: 100%;
+    background: #d3d3d3;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.music-upload-container {
+    padding: 20px;
+    color: white;
+}
+
+.upload-btn {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.upload-btn:hover {
+    background-color: #1ed760;
+    transform: scale(1.05);
+}
+
+.music-list {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* .song-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+} */
+
+.song-item {
+    padding: 10px;
+    margin: 5px 0;
+    background: #2a2a2a;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease;
+}
+
+.song-item.playing .song-name {
+    color: #1db954;
+    font-weight: bold;
+}
+
+.song-item.playing {
+    background-color: #3a3a3a;
+    border-left: 3px solid #1db954;
+}
+
+.song-item > * {
+    pointer-events: none;
+}
+
+.song-item:hover {
+    background-color: #333333;
+}
+
+.album-art {
+    width: 60px;
+    height: 60px;
+    background-color: #444;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 24px;
+}
+
+.song-details {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.song-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.artist-name {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    color: #aaa;
+}
+
+.song-duration {
+    font-size: 0.9rem;
+    color: #aaa;
+    min-width: 50px;
+    text-align: right;
+}
+
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+}
+
+.album-art-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.player-controls {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.control-btn.play {
+    font-size: 2.2rem;
+}
+
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: #555;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #1db954;
+    border-radius: 2px;
+    transition: width 0.1s linear;
 }
